@@ -1,5 +1,16 @@
 'use strict';
 // setting enviromental variables
+
+function startGame() {
+    let startButton = document.getElementById('gameStartButton');
+    startButton.addEventListener('click', () => {
+        let reciptionContainer = document.getElementById('reciptionContainer');
+        reciptionContainer.style.display = 'none';
+    })
+}
+
+startGame();
+
 let score = 0;
 let lightBoxIndex = getRandomIndex(3, 0);
 
@@ -34,5 +45,5 @@ function getRandomIndex(max, min) {
 }
 
 function appendScore() {
-    scoreSection.textContent = `Score ${score}`;
+    scoreSection.textContent = `Score: ${score}`;
 }
