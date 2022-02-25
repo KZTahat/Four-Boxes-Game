@@ -9,23 +9,28 @@
     <title>Four-Boxes</title>
   </head>
   <body>
-    <section id="mainContainer">
-      <section id="reciptionContainer">
-        <div id="buttonsSection">
-          <button id="gameStartButton">Start</button>
+    <section class="mainContainer">
+      <section class="reciptionContainer">
+        <div class="buttonsSection">
+          <button class="gameStartButton">Start</button>
           <button>Options</button>
           <button>Instructions</button>
           <button>Exist</button>
         </div>
       </section>
-      <section id="gameContainer">
-        <p id="scoreSection"></p>
+      <section class="gameContainer">
+        <p class="scoreSection"></p>
         <div class="boxes" id="box#one"></div>
         <div class="boxes" id="box#two"></div>
         <div class="boxes" id="box#three"></div>
         <div class="boxes" id="box#four"></div>
+        <button class="stopGameButton">Stop ⏹</button>
       </section>
     </section>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="/game.js"></script>
   </body>
 </html>
