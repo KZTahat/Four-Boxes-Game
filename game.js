@@ -1,11 +1,15 @@
 "use strict";
 
-// setting enviromental variables
-let score = 0;
-let lightBoxIndex = getRandomIndex(3, 0);
-
 // Setting Options Defaulte Variables
 let sounds = true;
+let music = true;
+let colorOne = 'red';
+let colorTwo = 'yellow';
+
+// setting enviromental variables
+let score = 0;
+let { lightBoxIndex, color } = getRandomIndexColor(3, 0);
+
 
 // Importing pages Containers
 let pages = [
@@ -15,13 +19,27 @@ let pages = [
   document.querySelector('.instructionsPage')
 ]
 
-
 let sfx = {
-  startGame: new Howl({
-    src: ["https://iondrimbafilho.me/water-drop.mp3"],
+  background: new Howl({
+    src: ['sfxs/background.mp3'],
   }),
-  push: new Howl({
-    src: ["https://assets.codepen.io/21542/howler-push.mp3"],
+  startGame: new Howl({
+    src: ["sfxs/start-game.wav"],
+  }),
+  buttonClick: new Howl({
+    src: ["sfxs/Button-click.wav"],
+  }),
+  redClick: new Howl({
+    src: ["sfxs/red-box-click.wav"],
+  }),
+  yellowClick: new Howl({
+    src: ["sfxs/yellow-box-click.wav"],
+  }),
+  backButton: new Howl({
+    src: ["sfxs/back-button.wav"],
+  }),
+  gameOver: new Howl({
+    src: ["sfxs/game-over.wav"],
   }),
 };
 
@@ -38,29 +56,40 @@ function startGame() {
 function gamePage() {
   let boxes = document.querySelectorAll(".boxes");
   appendScore();
-  boxes[lightBoxIndex].style.backgroundColor = "red";
-
+  boxes[lightBoxIndex].style.backgroundColor = `${colorOne}`;
   for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener("click", () => {
-      if (boxes[i].style.backgroundColor == "red") {
-        if (sounds) sfx.push.play();
+    boxes[i].addEventListener('click', () => {
+      if (boxes[i].style.backgroundColor == `${colorOne}`) {
+        if (sounds) sfx.redClick.play();
         boxes[i].style.backgroundColor = "gray";
-        lightBoxIndex = getRandomIndex(3, 0);
-        boxes[lightBoxIndex].style.backgroundColor = "red";
+        lightBoxIndex = getRandomIndexColor(3, 0).lightBoxIndex;
+        boxes[lightBoxIndex].style.backgroundColor = getRandomIndexColor().color;
         score++;
         appendScore();
       } else {
-        boxes[lightBoxIndex].style.backgroundColor = "gray";
-        lightBoxIndex = getRandomIndex(3, 0);
-        boxes[lightBoxIndex].style.backgroundColor = "red";
-        score--;
+        if (sounds) sfx.gameOver.play();
+        alert(`Game Over Your Score is ${score}`);
+        score = 0;
+        displayPage(0);
+      }
+    });
+    boxes[i].addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      if (boxes[i].style.backgroundColor == `${colorTwo}`) {
+        if (sounds) sfx.yellowClick.play();
+        boxes[i].style.backgroundColor = "gray";
+        lightBoxIndex = getRandomIndexColor(3, 0).lightBoxIndex;
+        boxes[lightBoxIndex].style.backgroundColor = getRandomIndexColor().color;
+        score++;
+        appendScore();
+      } else {
+        if (sounds) sfx.gameOver.play();
+        alert(`Game Over Your Score is ${score}`);
+        score = 0;
+        displayPage(0);
         appendScore();
       }
     });
-    // boxes[i].addEventListener('contextmenu', (e) => {
-    //   e.preventDefault();
-    //   alert('ok')
-    // })
   }
 
   //   Handling Stop Button Click
@@ -74,6 +103,7 @@ function gamePage() {
 function optionsPage() {
   let optionsPageButton = document.querySelector('.optionsPageButton');
   optionsPageButton.addEventListener('click', () => {
+    if (sounds) sfx.buttonClick.play();
     displayPage(2);
   })
 
@@ -81,23 +111,26 @@ function optionsPage() {
   optionsForm.addEventListener('submit', (e) => {
     e.preventDefault();
     displayPage(0);
-    if (e.target.sounds.checked) {
-      sounds = false;
-    } else {
-      sounds = true;
-    }
+    sounds = e.target.sounds.checked;
+    music = e.target.music.value;
+    colorOne = `${e.target.color1.value}`;
+    colorTwo = `${e.target.color2.value}`;
+    console.log(colorOne);
+    if (sounds) sfx.backButton.play();
   })
 }
 
 function instructionsPage() {
   let instructionsPageButton = document.querySelector('.instructionsPageButton');
   instructionsPageButton.addEventListener('click', () => {
+    if (sounds) sfx.buttonClick.play();
     displayPage(3);
   })
 
   // handling back Button
   let backButton = document.querySelector('.backButton');
   backButton.addEventListener('click', () => {
+    if (sounds) sfx.backButton.play();
     displayPage(0);
   })
 }
@@ -105,8 +138,11 @@ function instructionsPage() {
 
 // Helping Functions
 // get random Index to change color of one of the boxes
-function getRandomIndex(max, min) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+function getRandomIndexColor(max, min) {
+  return {
+    lightBoxIndex: Math.floor(Math.random() * (max - min + 1) + min),
+    color: Math.round(Math.random()) ? `${colorOne}` : `${colorTwo}`
+  };
 }
 
 function appendScore() {
@@ -129,3 +165,8 @@ startGame();
 gamePage();
 optionsPage();
 instructionsPage();
+
+// start background music
+// sfx.background.once('load', function(){
+//   if(music) sfx.background.play();
+// });
