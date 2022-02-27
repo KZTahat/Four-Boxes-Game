@@ -10,6 +10,8 @@
 
 /* game page styling */
 .gameContainer{display: none;}
-.boxes{width: 200px;height: 200px;border: 1px solid blue;display: inline-block;background-color: gray;margin: 10px;}
+.boxes{width: 200px;height: 200px;border: 1px solid blue;display: inline-block;background-color: gray;margin: 10px;cursor: pointer;}
 .scoreSection{font-size: larger;font-family: 'ZCOOL QingKe HuangYou', cursive;}
 
+.optionsPage{display: none;}
+.instructionsPage{display: none;}
