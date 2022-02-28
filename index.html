@@ -15,7 +15,6 @@
           <button class="gameStartButton">Start</button>
           <button class="optionsPageButton">Options</button>
           <button class="instructionsPageButton">Instructions</button>
-          <button>Exist</button>
         </div>
       </section>
       <section class="gameContainer">
@@ -24,7 +23,13 @@
         <div class="boxes" id="box#two"></div>
         <div class="boxes" id="box#three"></div>
         <div class="boxes" id="box#four"></div>
-        <button class="stopGameButton">Stop ⏹</button>
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">⏸</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#" class="restartButton">Restart</a>
+            <a href="#" class="stopGameButton">Exist</a>
+          </div>
+        </div>
       </section>
       <section class="optionsPage">
         <h1>Options</h1>
@@ -37,19 +42,13 @@
             Music 
             <input type="checkbox" name="music" />
           </label>
-          <label for="color1">
-            color1
-            <input type="color" name="color1">
-          </label>
-          <label for="color2">
-            color2
-            <input type="color" name="color2">
-          </label>
           <button type="submit">Back 🔙</button>
         </form>
       </section>
       <section class="instructionsPage">
         <h1>Instructions</h1>
+        <h3>Four Boxes </h3>
+        <p></p>
         <button class="backButton">Back</button>
       </section>
     </section>
