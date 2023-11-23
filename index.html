@@ -6,49 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stryling/reset.css" />
     <link rel="stylesheet" href="./stryling/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tillana:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>Four-Boxes</title>
   </head>
   <body>
     <section class="mainContainer">
       <section class="reciptionContainer">
         <div class="buttonsSection">
+          <h2>Four Boxes Game</h2>
           <button class="gameStartButton">Start</button>
           <button class="optionsPageButton">Options</button>
           <button class="instructionsPageButton">Instructions</button>
         </div>
       </section>
       <section class="gameContainer">
-        <p class="scoreSection"></p>
-        <div class="boxes" id="box#one"></div>
-        <div class="boxes" id="box#two"></div>
-        <div class="boxes" id="box#three"></div>
-        <div class="boxes" id="box#four"></div>
+        <p>Score - <span class="scoreSection"></span></p>
+        <div class="boxesContainer">
+          <div class="boxes" id="box#one"></div>
+          <div class="boxes" id="box#two"></div>
+          <div class="boxes" id="box#three"></div>
+          <div class="boxes" id="box#four"></div>
+        </div>
         <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">⏸</button>
+          <button onclick="myFunction()" class="dropbtn">| |</button>
           <div id="myDropdown" class="dropdown-content">
-            <a href="#" class="restartButton">Restart</a>
-            <a href="#" class="stopGameButton">Exist</a>
+            <a class="restartButton">Restart</a>
+            <a class="stopGameButton">Exist</a>
           </div>
         </div>
       </section>
       <section class="optionsPage">
-        <h1>Options</h1>
+        <h2>Options</h2>
         <form class="optionsForm">
           <label for="sounds">
-            Sounds effects
-            <input type="checkbox" name="sounds" />
+            Sound effects
+            <input type="checkbox" name="sounds" checked />
           </label>
           <label for="music">
-            Music 
-            <input type="checkbox" name="music" />
+            Music
+            <input type="checkbox" name="music" checked />
           </label>
-          <button type="submit">Back 🔙</button>
+          <button type="submit">Back</button>
         </form>
       </section>
       <section class="instructionsPage">
-        <h1>Instructions</h1>
-        <h3>Four Boxes </h3>
-        <p></p>
+        <h2>Instructions</h2>
+        <p>
+          <h3>Welcome to Four Boxes Game!</h3>
+          <p>This fast-paced challenge will test your reflexes and attention to detail. Your goal is simple: click on the correct light box to increase your score. Here's how it works:</p>
+        
+          <ul>
+            <li><strong>Starting the Game:</strong> The game kicks off after your first click. Get ready for an exciting sequence of events!</li>
+            <li><strong>Clicking Mechanics:</strong> Each correct click turns off the lit box and randomly lights up one of the other three boxes. Your counter increases with every accurate click, so aim for precision!</li>
+            <li><strong>Time Pressure:</strong> Don't let the clock run out! If you go more than 2 seconds without clicking, the light box will change randomly, and your counter will decrease by one. If the counter hits zero, it's game over.</li>
+          </ul>
+        
+          <h3>How to Play:</h3>
+          <ul>
+            <li>Use your mouse, left click on Blue, right click on Yellow.</li>
+            <li>React quickly to keep the game going.</li>
+            <li>Watch out for the timer and make every click count!</li>
+          </ul>
+        </p>
         <button class="backButton">Back</button>
       </section>
     </section>

@@ -1,10 +1,10 @@
 "use strict";
 
-// Setting Options Defaulte Variables
+// Setting Options Default Variables
 let sounds = true;
 let music = true;
 
-// setting enviromental variables
+// setting environmental variables
 let score = 0;
 let { lightBoxIndex, color } = getRandomIndexColor(3, 0);
 
@@ -49,7 +49,7 @@ let sfx = {
 function startGame() {
   let startButton = document.querySelector(".gameStartButton");
   startButton.addEventListener("click", () => {
-    if(music) sfx.background.stop();
+    if (music) sfx.background.stop();
     if (sounds) sfx.startGame.play();
     displayPage(1);
   });
@@ -58,12 +58,12 @@ function startGame() {
 let boxes = document.querySelectorAll(".boxes");
 function gamePage() {
   appendScore();
-  boxes[lightBoxIndex].style.backgroundColor = 'rgb(253, 51, 0)';
+  boxes[lightBoxIndex].style.backgroundColor = 'rgb(48, 159, 181)';
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('click', () => {
-      if (boxes[i].style.backgroundColor == 'rgb(253, 51, 0)') {
+      if (boxes[i].style.backgroundColor == 'rgb(48, 159, 181)') {
         if (sounds) sfx.redClick.play();
-        boxes[i].style.backgroundColor = "gray";
+        boxes[i].style.backgroundColor = "#A08474";
         lightBoxIndex = getRandomIndexColor(3, 0).lightBoxIndex;
         boxes[lightBoxIndex].style.backgroundColor = getRandomIndexColor().color;
         score++;
@@ -77,9 +77,9 @@ function gamePage() {
     });
     boxes[i].addEventListener('contextmenu', (e) => {
       e.preventDefault();
-      if (boxes[i].style.backgroundColor == 'rgb(212, 212, 22)') {
+      if (boxes[i].style.backgroundColor == 'rgb(195, 211, 18)') {
         if (sounds) sfx.yellowClick.play();
-        boxes[i].style.backgroundColor = "gray";
+        boxes[i].style.backgroundColor = "#A08474";
         lightBoxIndex = getRandomIndexColor(3, 0).lightBoxIndex;
         boxes[lightBoxIndex].style.backgroundColor = getRandomIndexColor().color;
         score++;
@@ -99,16 +99,17 @@ function gamePage() {
   stopGameButton.addEventListener("click", () => {
     score = 0;
     appendScore();
-    sfx.exitGame.play();
+    if (sounds) sfx.exitGame.play();
+    if (music) sfx.background.play();
     displayPage(0);
   });
 
-  // handling restrat Button click
+  // handling restart Button click
   let restartButton = document.querySelector('.restartButton');
   restartButton.addEventListener('click', () => {
     score = 0;
     appendScore();
-    sfx.startGame.play();
+    if (sounds) sfx.startGame.play();
   })
 }
 
@@ -125,7 +126,10 @@ function optionsPage() {
     e.preventDefault();
     displayPage(0);
     sounds = e.target.sounds.checked;
-    music = e.target.music.value;
+    let prevMusic = music;
+    music = e.target.music.checked;
+    if (!music) sfx.background.stop();
+    if (!prevMusic && music) sfx.background.play();
     if (sounds) sfx.backButton.play();
   })
 }
@@ -151,19 +155,19 @@ function instructionsPage() {
 function getRandomIndexColor(max, min) {
   return {
     lightBoxIndex: Math.floor(Math.random() * (max - min + 1) + min),
-    color: Math.round(Math.random()) ? 'rgb(253, 51, 0)' : 'rgb(212, 212, 22)'
+    color: Math.round(Math.random()) ? 'rgb(48, 159, 181)' : 'rgb(195, 211, 18)'
   };
 }
 
 function appendScore() {
   let scoreSection = document.querySelector(".scoreSection");
-  scoreSection.textContent = `Score: ${score}`;
+  scoreSection.textContent = `${score}`;
 }
 
 function displayPage(index) {
   for (let i = 0; i < pages.length; i++) {
     if (i == index) {
-      pages[i].style.display = 'block';
+      pages[i].style.display = 'flex';
     } else {
       pages[i].style.display = 'none';
     }
@@ -174,8 +178,8 @@ function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
+// Close the dropdown if the user clicks outside
+window.onclick = function (event) {
   if (!event.target.matches('.dropbtn')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;
@@ -195,6 +199,10 @@ optionsPage();
 instructionsPage();
 
 // start background music
-// sfx.background.once('load', function(){
-//   if(music) sfx.background.play();
-// });
+sfx.background.once('load', function () {
+  if (music) sfx.background.play();
+});
+
+sfx.background.on('end', function () {
+  if (music) sfx.background.play();
+});

@@ -1,26 +1,283 @@
-/* 
+:root {
+    --color_one: #C682B4;
+    --color_two: #88547A;
+    --color_three: #B8317A;
+    --color_four: #660632;
+    --color_five: #385A73;
+    --color_six: #309FB5;
+    --color_seven: #0B0F12;
+    --color_eight: #4D554D;
+    --color_nine: #7C8788;
+    --color_ten: #A08474;
+    --color_eleven: #c6d612;
+    --color_twelve: #A4E594;
+    --color_13: #85B490;
+    --color_14: #4C5414;
+}
 
-*/
-.mainContainer{width: 40%;margin:auto;margin-top: 10px; height: 600px;padding: 50px; border: 1px solid red;}
+* {
+    box-sizing: border-box;
+}
 
-/* reciption page styling */
-.reciptionContainer{width: 100%; height: 100%;  justify-content: center;align-items: center;}
-.buttonsSection {height: 60%; border: 1px solid green;}
-.buttonsSection button{display: block;width: 50%;height: 70px;margin: 2vh;border-radius: 0px 50px 50px 0px;cursor: pointer;}
+button,
+h2,
+p,
+a,
+h1,
+h2,
+h3,
+label,
+ul {
+    font-family: Tillana;
+}
+
+.mainContainer {
+    width: 100%;
+    height: 100vh;
+    padding: 50px 0;
+    background: linear-gradient(to left, var(--color_one), var(--color_two));
+}
+
+/* recaption page styling */
+.reciptionContainer {
+    width: 100%;
+    height: 100%;
+    padding: 0 5em;
+}
+
+.buttonsSection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.buttonsSection h2 {
+    color: var(--color_seven);
+    font-size: 3em;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+}
+
+.buttonsSection button {
+    width: 300px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0px 5px 10px 0px var(--color_eight);
+    background: linear-gradient(to right, var(--color_five), var(--color_six));
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.buttonsSection button:hover {
+    transform: translateY(-2px);
+}
+
+.buttonsSection button:nth-child(2) {
+    background: linear-gradient(to right, var(--color_14), #95a10e);
+    color: var(--color_seven);
+    font-weight: 600;
+}
+
 
 /* game page styling */
-.gameContainer{display: none;}
-.boxes{width: 200px;height: 200px;border: 1px solid blue;display: inline-block;background-color: gray;margin: 10px;cursor: pointer;
-    border-radius: 5px;}
-.scoreSection{font-size: larger;font-family: 'ZCOOL QingKe HuangYou', cursive;}
+.gameContainer {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    flex-direction: column;
+    padding: 2em 0;
+}
 
-.optionsPage{display: none;}
-.instructionsPage{display: none;}
+.gameContainer p {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 400;
+}
 
-.dropbtn {background-color: #3498DB;color: white;padding: 10px;font-size: 25px;border: none;cursor: pointer;}
-.dropbtn:hover, .dropbtn:focus {background-color: #2980B9;}
-.dropdown {position: relative;display: inline-block;}
-.dropdown-content {display: none;position: absolute;background-color: #f1f1f1;min-width: 40px;overflow: auto;box-shadow: 0px 8px16px 0px rgba(0,0,0,0.2);z-index: 1;}
-.dropdown-content a {color: black;padding: 12px 16px;text-decoration: none;display: block;}
-.dropdown a:hover {background-color: #ddd;}
-.show {display: block;}
+.gameContainer p span {
+    color: var(--color_eleven);
+}
+
+.boxesContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    /* border: 1px solid orange; */
+    gap: 1em;
+}
+
+.boxesContainer .boxes {
+    width: 170px;
+    height: 170px;
+    display: inline-block;
+    background-color: var(--color_ten);
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px 1px var(--color_two);
+    transition: 0.4s;
+}
+
+.scoreSection {
+    font-size: larger;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+.optionsPage {
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropbtn {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    font-family: a;
+    padding: 0;
+    margin: 0;
+    background-color: var(--color_four);
+    color: #fff;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.dropbtn:hover {
+    background-color: #2980B9;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 40px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.dropdown-content a:first-child {
+    border-bottom: 1px solid rgb(192, 179, 179);
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+/* /////////////////////////// */
+.optionsPage,
+.instructionsPage {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    flex-direction: column;
+    padding: 3em 7em;
+    box-sizing: border-box;
+}
+
+.optionsPage h2,
+.instructionsPage h2 {
+    font-size: 2.3em;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: var(--color_14);
+}
+
+.optionsPage form {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.optionsPage form label {
+    font-size: 1.5em;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--color_eleven);
+}
+
+.optionsPage form input {
+    width: 20px;
+    height: 20px;
+}
+
+.optionsPage form button, .instructionsPage button {
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    font-family: a;
+    padding: 0;
+    margin: 0;
+    background-color: var(--color_14);
+    color: var(--color_seven);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.instructionsPage{
+    gap: 1.4em;
+}
+
+.instructionsPage h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color_eleven);
+}
+
+.instructionsPage p {
+    font-weight: 600;
+    text-align: start;
+}
+
+.instructionsPage ul {
+    list-style: none;
+    line-height: 1.2em;
+    font-weight: 500;
+}
+
+.instructionsPage ul strong {
+    font-weight: 700;
+}
